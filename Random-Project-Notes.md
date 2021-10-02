@@ -50,4 +50,15 @@
 # Create a NAT Gateway
 * associate the eip with the nat gateway
 * associate the nat gaeway with a subnet
+* put the nat gateway in the public subnet so it can use the route to the internet 
+* associate the nat gateway with the private route table since the private subnets will be using the nat gatewat for egress internet traffic
+***
+# Create an internet gateway
+* create the internet gateway
+* make a route to associate the igw with the public route table - which gives it a route to the internet
+***
+# apply the vpc config
+* ```terraform init```
+* ``` terraform plan```
+* ```terraform apply```
 ***
