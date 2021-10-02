@@ -1,5 +1,6 @@
 # --- infastructure/variables.tf ---
-variable "aws_region" {
+# LAYER 1
+variable "region" {
   default     = "us-east-1"
   description = "AWS Region"
 }
