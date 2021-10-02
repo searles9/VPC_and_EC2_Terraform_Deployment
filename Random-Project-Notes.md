@@ -20,6 +20,34 @@
 ***
 # Create key pair for EC2
 * create it from the console 
-
 ***
 # Creating an S3 bucket for Terraform Remote State
+* create an S3 bucket
+***
+# Creating the remote state for S3
+* create infrastructure-prod.config
+***
+# VPC
+* https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
+***
+# Subnets
+* https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet
+* 3 Public 
+* 3 Private
+***
+# Route Tables
+* create route tables for the subnets
+* 1 for private subnets
+* 1 for public subnets
+***
+# Route Table Associations
+* you have to associate each individual subnet with a specific route table
+***
+# Creating an elastic IP for the NAT Gateway
+* create an elastic ip and mark that it will be used with a vpc
+* associate the eip with a private ip
+***
+# Create a NAT Gateway
+* associate the eip with the nat gateway
+* associate the nat gaeway with a subnet
+***
