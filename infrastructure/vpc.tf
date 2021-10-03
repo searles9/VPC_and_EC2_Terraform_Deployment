@@ -13,7 +13,7 @@ terraform {
     organization = "dps-terraform"
 
     workspaces {
-      name = "vpc-and-ec2"
+      name = "vpc-and-ec2-vpc"
     }
   }
 }
