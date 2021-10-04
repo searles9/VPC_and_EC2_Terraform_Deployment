@@ -62,3 +62,21 @@
 * ``` terraform plan```
 * ```terraform apply```
 ***
+# Create a new workspace for the platform
+***
+# Create the security groups
+***
+# Create the IAM role and policy
+***
+#  Create the instance profile
+***
+# Use ami data resource
+***
+# Create the launch configurations
+* "A launch configuration is an instance configuration template that an Auto Scaling group uses to launch EC2 instances"
+***
+# Create load balancers (elb)
+***
+# Create the auto-scaling groups
+***
+# 
