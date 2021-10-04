@@ -79,4 +79,8 @@
 ***
 # Create the auto-scaling groups
 ***
-# 
+# Create the scaling group policies
+* you need policies that define how it scales up and down
+* you need these so you dont have to manually scale the ec2 instances
+* ex say you want to scale up at 80% CPU usage 
+***

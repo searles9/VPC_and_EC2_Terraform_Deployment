@@ -13,11 +13,16 @@ AWS deployment of EC2 and VPC resources using Terraform (IAC)
 * more...
 
 # State management
-I used terraform cloud for state management. This project consists of 2 terraform cloud workspaces.
-Apart from the AWS access keys, none of the variables I used are ultra sensitive so I commited the tfvars files to GitHub. Terraform Cloud however also gives the option of defining the variables in the online UI.
+I used Terraform Cloud for state management. This project consists of 2 Terraform Cloud workspaces.
+I stored a few of the variable definitions in Terraform Cloud, however most definitions are stored in the ```.auto.tfvars``` files.
 ### vpc-and-ec2-vpc
 * This workspace is for the VPC/base infrastructure resources and acts as the root folder 
 * This workspace uses the files from the infrastructure folder
 ### vpc-and-ec2-platform
 * This workspace is for the other resources (EC2,SNS,Etc...). It pulls outputs from the "vpc-and-ec2-vpc" workspace.
 * This workspace uses the files from the platform folder
+
+# Resources used
+* I used this this Udemy course as a guide for the project:  https://www.udemy.com/course/vpc-solutions-with-ec2-for-production-aws-with-terraform/learn/lecture/12722901#questions
+* This was a guided project however I was able to cement a few key AWS concepts in my brain with the hands on experience I gained from this.
+* I also used the Terraform AWS docs:  https://registry.terraform.io/providers/hashicorp/aws/latest/docs

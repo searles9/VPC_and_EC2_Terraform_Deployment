@@ -33,3 +33,7 @@ variable "tag_webapp" {
 variable "tag_backend" {
   default = "Backend"
 }
+
+variable "sms_number" {
+  default = "My SMS number for sns notifications. Defined in TF Cloud."
+}

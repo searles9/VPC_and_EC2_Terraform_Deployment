@@ -138,6 +138,57 @@ resource "aws_autoscaling_group" "ec2_public_autoscaling_group" {
   }
 }
 # ------------------------------
+resource "aws_autoscaling_policy" "webapp-production-scale-up-policy" {
+  autoscaling_group_name   = aws_autoscaling_group.ec2_public_autoscaling_group.name
+  name                     = "Production-WebApp-AutoScaling-Policy"
+  policy_type              = "TargetTrackingScaling"
+  min_adjustment_magnitude = 1
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 80.0
+  }
+}
 # ------------------------------
+resource "aws_autoscaling_policy" "backend-production-scale-up-policy" {
+  autoscaling_group_name   = aws_autoscaling_group.ec2_private_autoscaling_group.name
+  name                     = "Production-Backend-AutoScaling-Policy"
+  policy_type              = "TargetTrackingScaling"
+  min_adjustment_magnitude = 1
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 80.0
+  }
+}
 # ------------------------------
+data "aws_instances" "web-app-production-instances" {
+  instance_tags = {
+    Type = var.tag_webapp
+  }
+  filter {
+    name   = "instance.group-id"
+    values = [aws_security_group.ec2_public_security_group.id]
+  }
+
+  instance_state_names = [ "running", "stopped" ]
+  depends_on           = [aws_autoscaling_group.ec2_public_autoscaling_group]
+}
+
+data "aws_instances" "backend-production-instances" {
+  instance_tags = {
+    Type = var.tag_backend
+  }
+  filter {
+    name   = "instance.group-id"
+    values = [aws_security_group.ec2_private_security_group.id]
+  }
+
+  instance_state_names = [ "running", "stopped" ]
+  depends_on           = [aws_autoscaling_group.ec2_private_autoscaling_group]
+}
 # ------------------------------
