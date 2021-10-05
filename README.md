@@ -3,7 +3,7 @@ AWS deployment of EC2 and VPC resources using Terraform (IAC)
 ***
 ***
 # AWS Resources Created:
-![Diagram](./IMAGES/Deployment-Diagram.png)
+![Diagram](./IMAGES/Diagram.png)
 * VPC
 * Subnets
 * Security Groups
