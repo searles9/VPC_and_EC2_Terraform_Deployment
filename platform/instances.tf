@@ -33,20 +33,6 @@ data "terraform_remote_state" "network_configuration" {
   }
 }
 
-#data "aws_ami" "launch_configuration_ami" {
-#  most_recent = true
-#  owners      = ["amazon"]
-
-#  filter {
-#    name   = "root-device-type"
-#    values = ["ebs"]
-#  }
-
-#  filter {
-#    name   = "virtualization-type"
-#    values = ["hvm"]
-#  }
-#}
 # ------------------------------
 resource "aws_launch_configuration" "ec2_private_launch_configuration" {
   image_id                    = "ami-087c17d1fe0178315"
@@ -175,7 +161,7 @@ data "aws_instances" "web-app-production-instances" {
     values = [aws_security_group.ec2_public_security_group.id]
   }
 
-  instance_state_names = [ "running", "stopped" ]
+  instance_state_names = ["running", "stopped"]
   depends_on           = [aws_autoscaling_group.ec2_public_autoscaling_group]
 }
 
@@ -188,7 +174,7 @@ data "aws_instances" "backend-production-instances" {
     values = [aws_security_group.ec2_private_security_group.id]
   }
 
-  instance_state_names = [ "running", "stopped" ]
+  instance_state_names = ["running", "stopped"]
   depends_on           = [aws_autoscaling_group.ec2_private_autoscaling_group]
 }
 # ------------------------------
