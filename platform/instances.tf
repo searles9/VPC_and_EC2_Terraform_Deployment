@@ -33,23 +33,23 @@ data "terraform_remote_state" "network_configuration" {
   }
 }
 
-data "aws_ami" "launch_configuration_ami" {
-  most_recent = true
-  owners      = ["amazon"]
+#data "aws_ami" "launch_configuration_ami" {
+#  most_recent = true
+#  owners      = ["amazon"]
 
-  filter {
-    name   = "root-device-type"
-    values = ["ebs"]
-  }
+#  filter {
+#    name   = "root-device-type"
+#    values = ["ebs"]
+#  }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
+#  filter {
+#    name   = "virtualization-type"
+#    values = ["hvm"]
+#  }
+#}
 # ------------------------------
 resource "aws_launch_configuration" "ec2_private_launch_configuration" {
-  image_id                    = data.aws_ami.launch_configuration_ami.id
+  image_id                    = "ami-087c17d1fe0178315"
   instance_type               = var.ec2_instance_type
   key_name                    = var.ec2_key_pair_name
   associate_public_ip_address = false
@@ -59,7 +59,7 @@ resource "aws_launch_configuration" "ec2_private_launch_configuration" {
   user_data = <<EOF
     #!/bin/bash
     yum update -y
-    yum install httpd24 -y
+    yum install httpd -y
     service httpd start
     chkconfig httpd on
     export INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
@@ -68,7 +68,7 @@ resource "aws_launch_configuration" "ec2_private_launch_configuration" {
 }
 # ------------------------------
 resource "aws_launch_configuration" "ec2_public_launch_configuration" {
-  image_id                    = data.aws_ami.launch_configuration_ami.id
+  image_id                    = "ami-087c17d1fe0178315"
   instance_type               = var.ec2_instance_type
   key_name                    = var.ec2_key_pair_name
   associate_public_ip_address = true
@@ -78,7 +78,7 @@ resource "aws_launch_configuration" "ec2_public_launch_configuration" {
   user_data = <<EOF
     #!/bin/bash
     yum update -y
-    yum install httpd24 -y
+    yum install httpd -y
     service httpd start
     chkconfig httpd on
     export INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
