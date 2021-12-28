@@ -23,6 +23,6 @@ I stored a few of the variable definitions in Terraform Cloud, however most defi
 * This workspace uses the files from the platform folder
 
 # Resources used
-* I used this this Udemy course as a guide for the project:  https://www.udemy.com/course/vpc-solutions-with-ec2-for-production-aws-with-terraform/learn/lecture/12722901#questions
+* I used this this Udemy course as a guide for the project:  https://www.udemy.com/course/vpc-solutions-with-ec2-for-production-aws-with-terraform
 * This was a guided project however I was able to cement a few key AWS concepts in my brain with the hands on experience I gained from this.
 * I also used the Terraform AWS docs:  https://registry.terraform.io/providers/hashicorp/aws/latest/docs
